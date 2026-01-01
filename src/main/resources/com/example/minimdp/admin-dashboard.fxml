@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.minimdp.AdminDashboardController">
+
+    <top>
+        <VBox spacing="8" BorderPane.alignment="CENTER">
+            <padding>
+                <Insets top="12" right="12" bottom="12" left="12"/>
+            </padding>
+            <Label fx:id="adminNameLabel"
+                   style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
+        </VBox>
+    </top>
+
+    <center>
+        <TabPane>
+            <!-- Movies tab -->
+            <Tab text="Movies" closable="false">
+                <VBox spacing="10">
+                    <padding>
+                        <Insets top="10" right="10" bottom="10" left="10"/>
+                    </padding>
+
+                    <Label text="Add new movie" style="-fx-font-weight: bold;"/>
+
+                    <GridPane hgap="10" vgap="8">
+                        <columnConstraints>
+                            <ColumnConstraints percentWidth="20"/>
+                            <ColumnConstraints percentWidth="80"/>
+                        </columnConstraints>
+
+                        <children>
+                            <Label text="Title:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                            <TextField fx:id="titleField"
+                                       GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+                            <Label text="Genre:"
+                                   GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                            <TextField fx:id="genreField"
+                                       promptText="Action / Adventure / ..."
+                                       GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+                            <Label text="Year:"
+                                   GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                            <TextField fx:id="yearField"
+                                       promptText="2024"
+                                       GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+                            <Label text="Description:"
+                                   GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+                            <TextArea fx:id="descArea"
+                                      prefRowCount="2"
+                                      GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+
+                            <Button text="Add Movie"
+                                    onAction="#handleAddMovie"
+                                    GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+                        </children>
+                    </GridPane>
+
+                    <Separator/>
+
+                    <HBox spacing="10">
+                        <Label text="Category:"/>
+                        <ComboBox fx:id="genreFilterCombo" promptText="All"/>
+                        <Button text="Refresh" onAction="#loadMovies"/>
+                    </HBox>
+
+                    <TableView fx:id="movieTable" prefHeight="260">
+                        <columns>
+                            <TableColumn fx:id="colTitle" text="Title" prefWidth="220"/>
+                            <TableColumn fx:id="colGenre" text="Genre" prefWidth="140"/>
+                            <TableColumn fx:id="colYear"  text="Year"  prefWidth="80"/>
+                        </columns>
+                    </TableView>
+
+                    <Label fx:id="movieMsgLabel"/>
+                </VBox>
+            </Tab>
+
+            <!-- Reviews tab -->
+            <Tab text="User Reviews" closable="false">
+                <VBox spacing="10">
+                    <padding>
+                        <Insets top="10" right="10" bottom="10" left="10"/>
+                    </padding>
+
+                    <TableView fx:id="reviewTable" prefHeight="360">
+                        <columns>
+                            <TableColumn fx:id="colMovie"   text="Movie"   prefWidth="180"/>
+                            <TableColumn fx:id="colUser"    text="User"    prefWidth="160"/>
+                            <TableColumn fx:id="colRating"  text="Rating"  prefWidth="70"/>
+                            <TableColumn fx:id="colComment" text="Comment" prefWidth="240"/>
+                            <TableColumn fx:id="colCreated" text="Time"    prefWidth="140"/>
+                        </columns>
+                    </TableView>
+
+                    <HBox spacing="10">
+                        <Button text="Refresh Reviews" onAction="#loadReviews"/>
+                        <Button text="Delete Selected Review" onAction="#handleDeleteReview"/>
+                        <Label fx:id="reviewMsgLabel"/>
+                    </HBox>
+                </VBox>
+            </Tab>
+        </TabPane>
+    </center>
+
+</BorderPane>

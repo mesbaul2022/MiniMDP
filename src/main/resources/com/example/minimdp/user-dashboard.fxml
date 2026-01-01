@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.minimdp.UserDashboardController">
+    <top>
+        <VBox spacing="8">
+            <padding><Insets top="12" right="12" bottom="12" left="12"/></padding>
+            <Label fx:id="userNameLabel" style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
+            <HBox spacing="10">
+                <Label text="Search:"/>
+                <TextField fx:id="searchField" promptText="Movie name"/>
+                <Label text="Genre:"/>
+                <ComboBox fx:id="genreCombo" promptText="All"/>
+                <Button text="Go" onAction="#handleSearch"/>
+                <Button text="Refresh" onAction="#loadMovies"/>
+            </HBox>
+        </VBox>
+    </top>
+
+    <center>
+        <SplitPane dividerPositions="0.55">
+            <VBox spacing="10">
+                <padding><Insets top="10" right="10" bottom="10" left="10"/></padding>
+                <TableView fx:id="movieTable" prefHeight="360">
+                    <columns>
+                        <TableColumn fx:id="colTitle" text="Title" prefWidth="220"/>
+                        <TableColumn fx:id="colGenre" text="Genre" prefWidth="140"/>
+                        <TableColumn fx:id="colYear"  text="Year"  prefWidth="80"/>
+                    </columns>
+                </TableView>
+                <Label fx:id="movieInfoLabel"/>
+            </VBox>
+
+            <VBox spacing="10">
+                <padding><Insets top="10" right="10" bottom="10" left="10"/></padding>
+                <Label fx:id="ratingLabel" text="Average rating: -"/>
+
+                <ListView fx:id="reviewList" prefHeight="200"/>
+
+                <Separator/>
+                <Label text="Write a review (optional for demo)" style="-fx-font-weight: bold;"/>
+                <HBox spacing="10">
+                    <Label text="Rating (1-10):"/>
+                    <ComboBox fx:id="ratingCombo" prefWidth="90"/>
+                </HBox>
+                <TextArea fx:id="commentArea" prefRowCount="3" promptText="Comment"/>
+                <Button text="Submit Review" onAction="#handleSubmitReview"/>
+                <Label fx:id="msgLabel"/>
+            </VBox>
+        </SplitPane>
+    </center>
+</BorderPane>
