@@ -21,6 +21,10 @@ public class HelloApplication extends Application {
         FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("/com/example/minimdp/login.fxml"));
 
         Scene scene = new Scene(loader.load(), 600, 400);
+        scene.getStylesheets().add(
+                HelloApplication.class.getResource("/com/example/minimdp/theme.css").toExternalForm()
+        );
+        stage.setScene(scene);
         stage.setTitle("MiniMDB - Login");
         stage.setScene(scene);
         stage.show();

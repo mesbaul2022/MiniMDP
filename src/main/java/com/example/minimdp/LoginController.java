@@ -62,13 +62,21 @@ public class LoginController {
                         HelloApplication.class.getResource("/com/example/minimdp/admin-dashboard.fxml")
                 );
                 stage.setTitle("MiniMDB - Admin Panel");
-                stage.setScene(new Scene(loader.load(), 900, 520));
+                Scene scene = new Scene(loader.load(), 900, 520);
+                scene.getStylesheets().add(
+                        HelloApplication.class.getResource("/com/example/minimdp/theme.css").toExternalForm()
+                );
+                stage.setScene(scene);
             } else {
                 FXMLLoader loader = new FXMLLoader(
                         HelloApplication.class.getResource("/com/example/minimdp/user-dashboard.fxml")
                 );
                 stage.setTitle("MiniMDB - User Panel");
-                stage.setScene(new Scene(loader.load(), 900, 520));
+                Scene scene = new Scene(loader.load(), 900, 520);
+                scene.getStylesheets().add(
+                        HelloApplication.class.getResource("/com/example/minimdp/theme.css").toExternalForm()
+                );
+                stage.setScene(scene);
             }
         } catch (Exception e) {
             errorLabel.setText("Error: " + e.getMessage());
